@@ -1,13 +1,16 @@
 package com.shrikant.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class User {
 
     @Id
@@ -20,8 +23,15 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Question> questions;
 
-    @JsonManagedReference
+    @JsonBackReference(value = "user-answer")
     @OneToMany(mappedBy = "user")
     private List<Answer> answers;
 
+    @JsonManagedReference(value = "user-comment")
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
+    @JsonManagedReference(value = "user-like")
+    @OneToMany(mappedBy = "user")
+    private List<QuestionLike> likes;
 }

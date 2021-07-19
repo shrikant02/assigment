@@ -1,11 +1,16 @@
 package com.shrikant.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Answer {
 
     @Id
@@ -14,13 +19,18 @@ public class Answer {
 
     private String text;
 
-    @JsonBackReference(value = "answer-question")
-    @JoinColumn(name = "question")
-    @ManyToOne
-    private Question question;
-
     @JsonBackReference(value = "user-answer")
     @JoinColumn(name = "user")
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private User user;
+
+    @JsonBackReference(value = "answer-question")
+    @JoinColumn(name = "question")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Question question;
+
+    @JsonManagedReference(value = "answer-comment")
+    @OneToMany(mappedBy = "answer")
+    private List<Comment> comments;
+
 }

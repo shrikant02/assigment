@@ -2,12 +2,15 @@ package com.shrikant.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Question {
 
     @Id
@@ -29,4 +32,8 @@ public class Question {
     @JsonManagedReference(value = "answer-question")
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
+
+    @JsonManagedReference(value = "question-like")
+    @OneToMany(mappedBy = "question")
+    private List<QuestionLike> likes;
 }

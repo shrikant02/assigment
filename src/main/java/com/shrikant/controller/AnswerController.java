@@ -16,4 +16,11 @@ public class AnswerController {
     public int postAnswer(@RequestBody Answer answer){
         return answerService.saveAnswer(answer);
     }
+
+    @GetMapping("/get/{id}")
+    public Answer answer(@PathVariable("id") int id){
+        Answer answer = answerService.getAnswer(id);
+        answer.getUser().toString();
+        return answer;
+    }
 }
