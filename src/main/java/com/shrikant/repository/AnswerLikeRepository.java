@@ -1,11 +1,11 @@
 package com.shrikant.repository;
 
-import com.shrikant.entity.Question;
+import com.shrikant.entity.AnswerLike;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface QuestionRepository extends JpaRepository<Question, Integer> {
+public interface AnswerLikeRepository extends JpaRepository<AnswerLike,Integer> {
 
-    Question findById(int id);
+    AnswerLike findById(int id);
 }

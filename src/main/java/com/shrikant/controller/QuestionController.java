@@ -14,6 +14,11 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
+    @GetMapping("/get/{id}")
+    public Question getQuestion(@PathVariable("id") int id){
+        return questionService.getQuestionById(id);
+    }
+
     @GetMapping("/getall")
     public List<Question> getAll(){
         return questionService.getAllQuestion();

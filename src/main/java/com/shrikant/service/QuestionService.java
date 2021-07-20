@@ -13,6 +13,10 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
+    public Question getQuestionById(int id){
+        return questionRepository.findById(id);
+    }
+
     public List<Question> getAllQuestion(){
         return questionRepository.findAll();
     }

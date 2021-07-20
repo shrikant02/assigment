@@ -1,7 +1,5 @@
 package com.shrikant.dto;
 
-import com.shrikant.entity.Answer;
-import com.shrikant.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

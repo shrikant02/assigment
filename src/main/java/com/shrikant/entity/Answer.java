@@ -33,4 +33,8 @@ public class Answer {
     @OneToMany(mappedBy = "answer")
     private List<Comment> comments;
 
+    @JsonManagedReference(value = "answer-like")
+    @OneToMany(mappedBy = "answer")
+    private List<AnswerLike> likes;
+
 }
